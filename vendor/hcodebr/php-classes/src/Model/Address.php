@@ -49,6 +49,9 @@ class Address extends Model {
 			$this->setData($results[0]);
 		}
 	}
+
+
+	
 	public static function setMsgError($msg)
 	{
 		$_SESSION[Address::SESSION_ERROR] = $msg;
