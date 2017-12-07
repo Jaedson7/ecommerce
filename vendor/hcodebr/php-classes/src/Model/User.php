@@ -46,7 +46,9 @@ class User extends Model{
 	public static function  login($login,$password){
 		$sql = new Sql();
 
-		$results = $sql->select("SELECT * FROM tb_users WHERE deslogin = :LOGIN", array(":LOGIN"=>$login));
+		$results = $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b ON a.idperson = b.idperson WHERE a.deslogin = :LOGIN", array(
+	":LOGIN"=>$login
+)); 
 
 		
 		if(count($results) ===0){
