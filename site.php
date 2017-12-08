@@ -385,7 +385,7 @@ $app->post("/profile", function(){
 	exit;
 });
 
-$app->get("order/:idorder", function($idorder){
+$app->get("/order/:idorder", function($idorder){
 	User::verifyLogin(false);
 
 	$order = new Order();
@@ -395,7 +395,7 @@ $app->get("order/:idorder", function($idorder){
 
 
 	$page = new Page();
-	$page-setTpl("payment",[
+	$page->setTpl("payment",[
 		'order'=>$order->getValues()
 		]);
 });
@@ -502,7 +502,7 @@ $app->get("/profile/orders/:idorder", function($idorder){
 	$page = new Page();
 
 	$page->setTpl("profile-orders-detail",[
-		'order'=>$user->getValues(),
+		'order'=>$order->getValues(),
 		'cart'=>$cart->getValues(),
 		'products'=>$cart->getProducts()
 		]);
