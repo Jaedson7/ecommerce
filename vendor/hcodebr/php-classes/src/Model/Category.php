@@ -135,7 +135,8 @@ class Category extends Model{
 		$sql = new Sql();
 		$results = $sql->select("
 			SELECT SQL_CALC_FOUND_ROWS *
-			FROM tb_categories ORDER BY descategory 
+			FROM tb_categories 
+			ORDER BY descategory
 			LIMIT $start, $itemsPerPage;
 		");
 		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
@@ -145,7 +146,6 @@ class Category extends Model{
 			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
 		];
 	}
-
 	public static function getPageSearch($search, $page = 1, $itemsPerPage = 10)
 	{
 		$start = ($page - 1) * $itemsPerPage;
@@ -153,8 +153,7 @@ class Category extends Model{
 		$results = $sql->select("
 			SELECT SQL_CALC_FOUND_ROWS *
 			FROM tb_categories 
-			INNER JOIN tb_persons b USING(idperson)
-			WHERE descategory LIKE :search 
+			WHERE descategory LIKE :search
 			ORDER BY descategory
 			LIMIT $start, $itemsPerPage;
 		", [
@@ -166,7 +165,8 @@ class Category extends Model{
 			'total'=>(int)$resultTotal[0]["nrtotal"],
 			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
 		];
-	} 
+	}
+
 	
 }
 
